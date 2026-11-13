@@ -1,4 +1,4 @@
-# Mission Sequencing Language (MSL)
+# Mission Sequencing Language (MSL) Design Choices
 
 
 
