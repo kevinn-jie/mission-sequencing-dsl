@@ -4,7 +4,7 @@
 
 ## Table of Contents
 
-1. [Rationale]()
+1. [Rationale](#rationale)
 
 
 
@@ -14,6 +14,4 @@
 
 ## Rationale
 
-Mission sequencing in spaceflight systems are frequently written in general-purpose scripting or mission-specific tooling languages, where behavior depends on the compiler. However, behavior can differ between compilers, volatility in non-deterministic in some languages, and sequencing errors cannot be risked.
-
-Consequently, this project aims to design a domain-specific language for mission sequencing written in C. The language will only express what a sequence needs: timing, commands, conditions, constraints, and strict customization.
+Mission sequencing in spaceflight autonomy must not pose risks. Actions should be deterministic and highly controlled in order to ensure success, as failure in spaceflight is often nothing short of expensive. Consequently, this project aims to design a domain-specific language for mission sequencing written in C. The language aims to only express what a sequence calls for, stripping away any volatile, risk-posing architecture.
