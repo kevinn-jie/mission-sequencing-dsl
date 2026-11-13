@@ -4,9 +4,36 @@
 
 ## Design Pillars
 
-* MSL should be simplistic, human readable, and more efficient to type than JSON.
-* To be compatible per team, recognized commands and identifers should be easily interchangeable.
+MSL should be simplistic, human readable, and more efficient to type than JSON.
 
+### General Step Structure
+
+```text
+[time frame] [stem] [arguments]
+```
+
+### General Output JSON Structure
+
+```json
+{
+  "metadata": {
+    ...
+  },
+  "steps": [
+    {
+      "stem": "...",
+      "time": {
+        "type": "...",
+        "tag": "..."
+      },
+      "args": [
+        ...
+      ]
+    },
+    ...
+  ]
+}
+```
 
 
 ## Keywords
@@ -28,6 +55,9 @@
 
 
 ## Literals
-* **Types**: Defined and function per MSL implementation, act as keywords
-* **Strings**: Denoted using `""`
-* **Numbers**: Contiuous digits, including periods
+
+* Array
+* Identifier
+* String
+* Boolean
+* Number
