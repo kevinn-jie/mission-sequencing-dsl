@@ -35,6 +35,16 @@ MSL should be simplistic, human readable, and more efficient to type than JSON.
 }
 ```
 
+### File Extensions
+
+* `.msl`: Source code file
+* `.msl.json`: Output file
+
+
+
+<br>
+
+
 
 ## Keywords
 
@@ -46,11 +56,19 @@ MSL should be simplistic, human readable, and more efficient to type than JSON.
 
 
 
+<br>
+
+
+
 ## Delimeters
 
 * `()`
 * `[]`
 * `{}`
+
+
+
+<br>
 
 
 
