@@ -1,0 +1,181 @@
+{
+  "id": "PERIAPSIS_SCIENCE_MOSAIC_09",
+  "metadata": {
+    "sequence_id": "PERIAPSIS_SCIENCE_MOSAIC_09",
+    "epoch_reference": "ORBIT_14_PERIAPSIS",
+    "author": "Science_Planning_Group",
+    "priority": "HIGH"
+  },
+  "steps": [
+    {
+      "type": "command",
+      "stem": "CMD_NO_OP",
+      "description": "Verify sequence engine readiness prior to flyby",
+      "time": {
+        "type": "EPOCH_RELATIVE",
+        "tag": "-00:15:00.000"
+      },
+      "args": []
+    },
+    {
+      "type": "command",
+      "stem": "INSTRUMENT_MODE",
+      "description": "Warm up UV spectrometer",
+      "time": {
+        "type": "COMMAND_RELATIVE",
+        "tag": "00:00:05.000"
+      },
+      "args": [
+        "IMAGER_UV",
+        "SCIENCE_READY"
+      ]
+    },
+    {
+      "type": "command",
+      "stem": "INSTRUMENT_MODE",
+      "description": "Boost magnetic sampling rate",
+      "time": {
+        "type": "COMMAND_RELATIVE",
+        "tag": "00:00:02.000"
+      },
+      "args": [
+        "MAGNETOMETER",
+        "HIGH_CADENCE"
+      ]
+    },
+    {
+      "type": "load",
+      "sequence": "UV_SCAN_GRID_A.seqn",
+      "description": "Stage mosaic grid A into engine slot 101",
+      "time": {
+        "type": "COMMAND_RELATIVE",
+        "tag": "00:01:00.000"
+      },
+      "args": [
+        101
+      ]
+    },
+    {
+      "type": "load",
+      "sequence": "UV_SCAN_GRID_B.seqn",
+      "description": "Stage mosaic grid B into engine slot 102",
+      "time": {
+        "type": "COMMAND_RELATIVE",
+        "tag": "00:00:05.000"
+      },
+      "args": [
+        102
+      ]
+    },
+    {
+      "type": "command",
+      "stem": "SLEW_TO_NADIR",
+      "time": {
+        "type": "COMMAND_RELATIVE",
+        "tag": "00:02:00.000"
+      },
+      "args": [
+        {
+          "offset_roll": 0.0,
+          "offset_pitch": -4.5,
+          "offset_yaw": 0.0
+        }
+      ]
+    },
+    {
+      "type": "directive",
+      "name": "WAIT_UNTIL",
+      "description": "Wait up to 120s for attitude lock",
+      "time": {
+        "type": "COMMAND_COMPLETE"
+      },
+      "args": [
+        "ACS_ATTITUDE_SETTLED == true",
+        120.0
+      ]
+    },
+    {
+      "type": "directive",
+      "name": "ACTIVATE_SLOT",
+      "description": "Trigger pre-staged UV_SCAN_GRID_A immediately",
+      "time": {
+        "type": "COMMAND_RELATIVE",
+        "tag": "00:00:01.000"
+      },
+      "args": [
+        101
+      ]
+    },
+    {
+      "type": "directive",
+      "name": "ACTIVATE_SLOT",
+      "description": "Trigger pre-staged UV_SCAN_GRID_B after 5.5 mins",
+      "time": {
+        "type": "COMMAND_RELATIVE",
+        "tag": "00:05:30.000"
+      },
+      "args": [
+        102
+      ]
+    },
+    {
+      "type": "command",
+      "stem": "SET_SCIENCE_METADATA",
+      "time": {
+        "type": "COMMAND_COMPLETE"
+      },
+      "args": [
+        {
+          "campaign": "EUROPA_PLUME",
+          "orbit": 14,
+          "tags": ["UV", "MAG"]
+        }
+      ]
+    },
+    {
+      "type": "ground_event",
+      "name": "FLYBY_OBSERVATION_COMPLETE",
+      "time": {
+        "type": "EPOCH_RELATIVE",
+        "tag": "+00:05:00.000"
+      },
+      "args": [
+        "DSS-43"
+      ]
+    },
+    {
+      "type": "unload",
+      "description": "Free sequence engine memory slot 101",
+      "time": {
+        "type": "COMMAND_RELATIVE",
+        "tag": "00:00:10.000"
+      },
+      "args": [
+        101
+      ]
+    },
+    {
+      "type": "unload",
+      "description": "Free sequence engine memory slot 102",
+      "time": {
+        "type": "COMMAND_COMPLETE"
+      },
+      "args": [
+        102
+      ]
+    },
+    {
+      "type": "command",
+      "stem": "INSTRUMENT_MODE",
+      "description": "Return imager to low-power state",
+      "time": {
+        "type": "COMMAND_RELATIVE",
+        "tag": "00:00:05.000"
+      },
+      "args": [
+        "IMAGER_UV",
+        "IDLE"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+; ============================================================================
+; Script Name: DSN_DOWNLINK_PASS_042.seqn
+; Description: Automated X-Band telemetry downlink for DSN Goldstone Pass 42
+; ============================================================================
+
+; --- Sequence Metadata Headers (compiles to seq-json metadata object) ---
+@METADATA "sequence_id" "DSN_DOWNLINK_PASS_042"
+@METADATA "author" "FlightOps_Team_B"
+@METADATA "spacecraft" "EUROPA_SIM_01"
+@METADATA "ground_station" "DSS-24"
+
+; --- 1. Pre-Pass Attitude Slew & Thermal Prep (Absolute UTC/DOY) ---
+A2026-318T02:15:00.000 CMD_NO_OP ; Confirm sequence start and clock sync
+R00:00:02.000 SET_THERMAL_ZONE "TWTA_X_BAND" 35.5 true ; Enable X-band amplifier heater
+R00:00:05.000 SLEW_TO_TARGET {target: "EARTH_DSN", frame: "J2000", rate_deg_s: 0.25} ; Point High-Gain Antenna
+
+; --- 2. Sub-Sequence Invocation ---
+; Wait 4 minutes for slew settle, then run the antenna calibration sub-sequence
+R00:04:00.000 @ACTIVATE "HGA_CALIBRATE_01.seqn"
+
+; --- 3. RF Transmitter Configuration (Relative & Completion-Driven) ---
+R00:01:30.000 RF_TRANSPONDER_MODE "COHERENT" 8415.0 ; Set X-band downlink frequency (MHz)
+C RF_CARRIER_ENABLE true ; Execute immediately after transponder mode finishes
+R00:00:10.000 SET_TELEMETRY_RATE 2048000 ; Switch to 2.048 Mbps high-rate downlink
+
+; --- 4. Data Playback & Queue Management ---
+R00:00:05.000 SSR_PLAYBACK_START "SCIENCE_PARTITION_A" [101, 102, 103] ; Downlink stored packet IDs
+R00:15:00.000 SSR_PLAYBACK_STOP "SCIENCE_PARTITION_A" ; End science playback after 15-minute window
+C DOWNLINK_REALTIME_HOUSEKEEPING 60 ; Flush 60 seconds of engineering telemetry
+
+; --- 5. Post-Pass Safe Shutdown ---
+R00:01:05.000 RF_CARRIER_ENABLE false ; Turn off transmitter carrier
+C RF_TRANSPONDER_MODE "STANDBY" 0.0 ; Return transponder to low-power state
+R00:00:05.000 SET_THERMAL_ZONE "TWTA_X_BAND" 15.0 false ; Reduce heater setpoint
+R00:00:02.000 SLEW_TO_SUN_SAFE ; Return spacecraft to nominal sun-pointing attitude

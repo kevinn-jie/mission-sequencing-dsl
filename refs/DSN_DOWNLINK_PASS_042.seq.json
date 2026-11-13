@@ -1,0 +1,181 @@
+{
+  "id": "DSN_DOWNLINK_PASS_042",
+  "metadata": {
+    "sequence_id": "DSN_DOWNLINK_PASS_042",
+    "author": "FlightOps_Team_B",
+    "spacecraft": "EUROPA_SIM_01",
+    "ground_station": "DSS-24"
+  },
+  "steps": [
+    {
+      "type": "command",
+      "stem": "CMD_NO_OP",
+      "description": "Confirm sequence start and clock sync",
+      "time": {
+        "type": "ABSOLUTE",
+        "tag": "2026-318T02:15:00.000"
+      },
+      "args": []
+    },
+    {
+      "type": "command",
+      "stem": "SET_THERMAL_ZONE",
+      "description": "Enable X-band amplifier heater",
+      "time": {
+        "type": "COMMAND_RELATIVE",
+        "tag": "00:00:02.000"
+      },
+      "args": [
+        "TWTA_X_BAND",
+        35.5,
+        true
+      ]
+    },
+    {
+      "type": "command",
+      "stem": "SLEW_TO_TARGET",
+      "description": "Point High-Gain Antenna",
+      "time": {
+        "type": "COMMAND_RELATIVE",
+        "tag": "00:00:05.000"
+      },
+      "args": [
+        {
+          "target": "EARTH_DSN",
+          "frame": "J2000",
+          "rate_deg_s": 0.25
+        }
+      ]
+    },
+    {
+      "type": "activate",
+      "sequence": "HGA_CALIBRATE_01.seqn",
+      "description": "Wait 4 minutes for slew settle, then run the antenna calibration sub-sequence",
+      "time": {
+        "type": "COMMAND_RELATIVE",
+        "tag": "00:04:00.000"
+      },
+      "args": []
+    },
+    {
+      "type": "command",
+      "stem": "RF_TRANSPONDER_MODE",
+      "description": "Set X-band downlink frequency (MHz)",
+      "time": {
+        "type": "COMMAND_RELATIVE",
+        "tag": "00:01:30.000"
+      },
+      "args": [
+        "COHERENT",
+        8415.0
+      ]
+    },
+    {
+      "type": "command",
+      "stem": "RF_CARRIER_ENABLE",
+      "description": "Execute immediately after transponder mode finishes",
+      "time": {
+        "type": "COMMAND_COMPLETE"
+      },
+      "args": [
+        true
+      ]
+    },
+    {
+      "type": "command",
+      "stem": "SET_TELEMETRY_RATE",
+      "description": "Switch to 2.048 Mbps high-rate downlink",
+      "time": {
+        "type": "COMMAND_RELATIVE",
+        "tag": "00:00:10.000"
+      },
+      "args": [
+        2048000
+      ]
+    },
+    {
+      "type": "command",
+      "stem": "SSR_PLAYBACK_START",
+      "description": "Downlink stored packet IDs",
+      "time": {
+        "type": "COMMAND_RELATIVE",
+        "tag": "00:00:05.000"
+      },
+      "args": [
+        "SCIENCE_PARTITION_A",
+        [101, 102, 104, 108]
+      ]
+    },
+    {
+      "type": "command",
+      "stem": "SSR_PLAYBACK_STOP",
+      "description": "End science playback after 15-minute window",
+      "time": {
+        "type": "COMMAND_RELATIVE",
+        "tag": "00:15:00.000"
+      },
+      "args": [
+        "SCIENCE_PARTITION_A"
+      ]
+    },
+    {
+      "type": "command",
+      "stem": "DOWNLINK_REALTIME_HOUSEKEEPING",
+      "description": "Flush 60 seconds of engineering telemetry",
+      "time": {
+        "type": "COMMAND_COMPLETE"
+      },
+      "args": [
+        60
+      ]
+    },
+    {
+      "type": "command",
+      "stem": "RF_CARRIER_ENABLE",
+      "description": "Turn off transmitter carrier",
+      "time": {
+        "type": "COMMAND_RELATIVE",
+        "tag": "00:01:05.000"
+      },
+      "args": [
+        false
+      ]
+    },
+    {
+      "type": "command",
+      "stem": "RF_TRANSPONDER_MODE",
+      "description": "Return transponder to low-power state",
+      "time": {
+        "type": "COMMAND_COMPLETE"
+      },
+      "args": [
+        "STANDBY",
+        0.0
+      ]
+    },
+    {
+      "type": "command",
+      "stem": "SET_THERMAL_ZONE",
+      "description": "Reduce heater setpoint",
+      "time": {
+        "type": "COMMAND_RELATIVE",
+        "tag": "00:00:05.000"
+      },
+      "args": [
+        "TWTA_X_BAND",
+        15.0,
+        false
+      ]
+    },
+    {
+      "type": "command",
+      "stem": "SLEW_TO_SUN_SAFE",
+      "description": "Return spacecraft to nominal sun-pointing attitude",
+      "time": {
+        "type": "COMMAND_RELATIVE",
+        "tag": "00:00:02.000"
+      },
+      "args": []
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+; ============================================================================
+; Script Name: PERIAPSIS_SCIENCE_MOSAIC_09.seqn
+; Description: Epoch-relative multi-instrument flyby mosaic & fault-safe check
+; ============================================================================
+
+@METADATA "sequence_id" "PERIAPSIS_SCIENCE_MOSAIC_09"
+@METADATA "epoch_reference" "ORBIT_14_PERIAPSIS"
+@METADATA "author" "Science_Planning_Group"
+@METADATA "priority" "HIGH"
+
+; --- 1. Epoch-Relative Timing (E + offset from a mission-defined event) ---
+; Begins 15 minutes before closest approach (Periapsis)
+E-00:15:00.000 CMD_NO_OP ; Verify sequence engine readiness prior to flyby
+R00:00:05.000 INSTRUMENT_MODE "IMAGER_UV" "SCIENCE_READY" ; Warm up UV spectrometer
+R00:00:02.000 INSTRUMENT_MODE "MAGNETOMETER" "HIGH_CADENCE" ; Boost magnetic sampling rate
+
+; --- 2. Pre-Loading Child Sequences (@LOAD vs @ACTIVATE) ---
+; Loads sub-sequences into onboard memory slots without starting them yet
+R00:01:00.000 @LOAD "UV_SCAN_GRID_A.seqn" 101 ; Stage mosaic grid A into engine slot 101
+R00:00:05.000 @LOAD "UV_SCAN_GRID_B.seqn" 102 ; Stage mosaic grid B into engine slot 102
+
+; --- 3. Telemetry / Flight-Rule Wait Conditions ---
+; Pauses timeline progression until flight software confirms slew stability
+R00:02:00.000 SLEW_TO_NADIR {offset_roll: 0.0, offset_pitch: -4.5, offset_yaw: 0.0}
+C @WAIT_UNTIL "ACS_ATTITUDE_SETTLED == true" 120.0 ; Wait up to 120s for attitude lock
+
+; --- 4. Executing Pre-Loaded Sequences & Data Tagging ---
+R00:00:01.000 @ACTIVATE_SLOT 101 ; Trigger pre-staged UV_SCAN_GRID_A immediately
+R00:05:30.000 @ACTIVATE_SLOT 102 ; Trigger pre-staged UV_SCAN_GRID_B after 5.5 mins
+C SET_SCIENCE_METADATA {campaign: "EUROPA_PLUME", orbit: 14, tags: ["UV", "MAG"]}
+
+; --- 5. Ground Request Directive (for ground-in-the-loop simulation/ops) ---
+; Instructs ground data systems (SeqGen/DSN) to log an expected event marker
+E+00:05:00.000 @GROUND_EVENT "FLYBY_OBSERVATION_COMPLETE" "DSS-43"
+
+; --- 6. Post-Flyby Safe Cleanup ---
+R00:00:10.000 @UNLOAD 101 ; Free sequence engine memory slot 101
+C @UNLOAD 102 ; Free sequence engine memory slot 102
+R00:00:05.000 INSTRUMENT_MODE "IMAGER_UV" "IDLE" ; Return imager to low-power state
