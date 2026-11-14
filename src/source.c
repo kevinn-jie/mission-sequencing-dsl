@@ -9,7 +9,7 @@
 #include "source.h"
 
 char* read_source(const char* path) {
-    /* Binary mode, so `ftell()` returns a byte count */
+    /* Binary mode so ftell() returns byte count */
     FILE* file = fopen(path, "rb");
     if (file == NULL) {
         fprintf(stderr, "error: could not open file \"%s\".\n", path);
@@ -31,7 +31,7 @@ char* read_source(const char* path) {
 
     rewind(file);
 
-    /* One extra byte for the null terminator */
+    /* Extra byte for null terminator */
     char* buffer = malloc((size_t)file_size + 1);
     if (buffer == NULL) {
         fprintf(stderr, "error: not enough memory to read \"%s\".\n", path);

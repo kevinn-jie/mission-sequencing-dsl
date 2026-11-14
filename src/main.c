@@ -1,6 +1,6 @@
 /**
- * @file main.h
- * 
+ * @file  main.h
+ * @brief 
  * TODO: Update this header.
  */
 
@@ -10,7 +10,7 @@
 
 #include "source.h"
 
-/* TODO: Usage and general CLI tool design is to be refined later */
+/* TODO: Refine usage and general CLI tool design */
 static void print_usage(void) {
     fprintf(stderr, "usage: msl <input.msl> [-o <output.msl.json>]\n");
 }
@@ -19,7 +19,7 @@ int main(int argc, char* argv[]) {
     const char* input_path = NULL;
     const char* output_path = NULL;
 
-    /* Accept the input path and -o <output> in either order, like gcc */
+    /* Accept input path and -o <output> in any order (like gcc) */
     for (int i = 1; i < argc; i++) {
         if (strcmp(argv[i], "-o") == 0) {
             if (i + 1 >= argc || output_path != NULL) {
@@ -50,7 +50,7 @@ int main(int argc, char* argv[]) {
         return 74;
     }
 
-    /* TEMPORARY: echoes the source until the scanner and JSON output exist */
+    /* TEMPORARY: echoes source until scanner and JSON output exist */
     printf("input:  %s\n", input_path);
     printf("output: %s\n", output_path != NULL ? output_path : "(not set)");
     printf("bytes:  %zu\n", strlen(source));

@@ -27,8 +27,8 @@ typedef enum {
     /* Literals */
     TOKEN_IDENTIFIER,
     TOKEN_STRING,
-    TOKEN_NUMBER, /* Integers and floats              */
-    TOKEN_TIME,   /* Relative and absolute timestamps */
+    TOKEN_NUMBER, /* Integers and floats                         */
+    TOKEN_TIME,   /* Relative timestamps and absolute timestamps */
 
     TOKEN_EOF,
     TOKEN_TYPE_COUNT,
@@ -36,7 +36,7 @@ typedef enum {
 
 typedef struct {
     TokenType type;
-    const char* start; /* Lexeme literals are tracked by location to save memory */
+    const char* start; /* Lexeme literals tracked by location to save memory */
     size_t length;
     int line;
 } Token;
