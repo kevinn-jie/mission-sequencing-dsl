@@ -1,9 +1,16 @@
+/**
+ * @file  main.h
+ * 
+ * TODO: Update this header.
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
 #include "source.h"
 
+/* TODO: Usage and general CLI tool design is to be refined later */
 static void print_usage(void) {
     fprintf(stderr, "usage: msl <input.msl> [-o <output.msl.json>]\n");
 }
@@ -43,7 +50,7 @@ int main(int argc, char* argv[]) {
         return 74;
     }
 
-    /* TEMPORARY: echo the source until the scanner and JSON output exist */
+    /* NOTE: temporary; echoes the source until the scanner and JSON output exist */
     printf("input:  %s\n", input_path);
     printf("output: %s\n", output_path != NULL ? output_path : "(not set)");
     printf("bytes:  %zu\n", strlen(source));

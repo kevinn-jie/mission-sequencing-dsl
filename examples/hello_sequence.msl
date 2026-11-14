@@ -1,15 +1,15 @@
 # ============================================================
 # Script Name: hello_sequence.msl
-# Description: A simple, directional, non-conditional sequence
+# Description: A simple 5-step sequence
 # ============================================================
 
-# Sequence Metadata Headers
+# Metadata Headers
 @METADATA "sequence_id"    "hello_sequence"
 @METADATA "author"         "kevin_jie"
 @METADATA "spacecraft"     "MSL"
 @METADATA "ground_station" "VS_CODE"
 
-# Directional Sequence
+# Sequence
 @EPOCH    2026-318T02:15:00.000 START
 @RELATIVE 00:00:02.000          COMMAND1
 @ABSOLUTE 2026-318T02:16:00.000 COMMAND2 "argument" 123 0.123 true
