@@ -4,7 +4,7 @@
 
 ## Design Pillars
 
-MSL should be simplistic, human readable, and more efficient to type than JSON.
+The name for this DSL is Mission Sequencing Language (MSL). MSL should be simplistic, human readable, and more efficient to type than JSON.
 
 ### General Step Structure
 

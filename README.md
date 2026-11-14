@@ -27,3 +27,5 @@ Mission sequencing in spaceflight autonomy must not pose risks. Actions should b
 
 * [seq-json-schema](https://github.com/NASA-AMMOS/seq-json-schema)
 * [DevDocs - C documentation](https://devdocs.io/c/)
+* [Crafting Interpreters](https://craftinginterpreters.com/contents.html)
+    * [Scanning](https://craftinginterpreters.com/scanning.html)
