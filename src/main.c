@@ -1,5 +1,5 @@
 /**
- * @file  main.h
+ * @file main.h
  * 
  * TODO: Update this header.
  */
@@ -19,7 +19,7 @@ int main(int argc, char* argv[]) {
     const char* input_path = NULL;
     const char* output_path = NULL;
 
-    /* Accept the input path and `-o <output>` in either order, like gcc */
+    /* Accept the input path and -o <output> in either order, like gcc */
     for (int i = 1; i < argc; i++) {
         if (strcmp(argv[i], "-o") == 0) {
             if (i + 1 >= argc || output_path != NULL) {
@@ -50,7 +50,7 @@ int main(int argc, char* argv[]) {
         return 74;
     }
 
-    /* NOTE: temporary; echoes the source until the scanner and JSON output exist */
+    /* TEMPORARY: echoes the source until the scanner and JSON output exist */
     printf("input:  %s\n", input_path);
     printf("output: %s\n", output_path != NULL ? output_path : "(not set)");
     printf("bytes:  %zu\n", strlen(source));

@@ -1,6 +1,6 @@
 /**
  * @file  source.c
- * @brief Work in progress.
+ * @brief Reads source code into a single string.
  */
 
 #include <stdio.h>

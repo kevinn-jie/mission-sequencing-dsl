@@ -1,6 +1,6 @@
 /**
  * @file  token.h
- * @brief Defines token types and location information.
+ * @brief Defines token types and token location information.
  */
 
 #ifndef MSL_TOKEN_H
