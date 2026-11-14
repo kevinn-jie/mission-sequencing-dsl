@@ -1,3 +1,8 @@
+/**
+ * @file  token.h
+ * @brief Defines token types and location information.
+ */
+
 #ifndef MSL_TOKEN_H
 #define MSL_TOKEN_H
 
