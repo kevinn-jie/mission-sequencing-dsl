@@ -40,7 +40,7 @@
  *
  * Checks made outside the grammar:
  *     The scanner emits absolute and relative timestamps as the same TIME token
- *      \and checks their format only, so the parser checks that:
+ *     and checks their format only, so the parser checks that:
  *       - TIME is absolute (YYYY-DDDTHH:MM:SS.sss) after "@EPOCH" and
  *         "@ABSOLUTE".
  *       - TIME is relative (HH:MM:SS.sss) after "@RELATIVE".
@@ -57,4 +57,18 @@
  *       - A trailing comma is an error: [1, 2,]
  *     Unused tokens:
  *       - "(" and ")" are scanned, but no rule uses them, so they are always an error.
+ * 
+ * Choice confirmation:
+ *     Ordering:
+ *       - Metadata headers can appear anywhere, they simply translate to the metadata section.
+ *       - "@EPOCH" is required because it denotes the beginning of a sequence.
+ *     Values:
+ *       - Metadata values can be booleans, strings, numbers, arrays, and objects, but the key must be a string.
+ *         Identifiers do no work with metadata.
+ *       - Arrays and objects can be empty: [] and {}
+ *       - Arrays and objects can nest: [[1, 2], {key1: [3]}]
+ *       - A trailing comma is an error: [1, 2,]
+ *     Unused tokens:
+ *       - They are not needed, they can be removes and unintegrated.
  */
+

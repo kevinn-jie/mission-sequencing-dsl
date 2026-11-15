@@ -14,8 +14,6 @@
 
 /* Printable names for each TokenType, indexed by the enum value */
 static const char* const TOKEN_TYPE_NAMES[] = {
-    [TOKEN_LEFT_PAREN]    = "LEFT_PAREN",
-    [TOKEN_RIGHT_PAREN]   = "RIGHT_PAREN",
     [TOKEN_LEFT_BRACKET]  = "LEFT_BRACKET",
     [TOKEN_RIGHT_BRACKET] = "RIGHT_BRACKET",
     [TOKEN_LEFT_BRACE]    = "LEFT_BRACE",

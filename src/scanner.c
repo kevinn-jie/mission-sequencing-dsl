@@ -332,12 +332,6 @@ static void scan_token(Scanner* scanner) {
     char character = advance(scanner);
 
     switch (character) {
-        case '(': 
-            add_token(scanner, TOKEN_LEFT_PAREN); break;
-
-        case ')': 
-            add_token(scanner, TOKEN_RIGHT_PAREN); break;
-
         case '[': 
             add_token(scanner, TOKEN_LEFT_BRACKET); break;
 
