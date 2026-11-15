@@ -35,3 +35,4 @@ Mission sequencing in spaceflight autonomy must not pose risks. Actions should b
 * [DevDocs - C documentation](https://devdocs.io/c/)
 * [Crafting Interpreters](https://craftinginterpreters.com/contents.html)
     * [Scanning](https://craftinginterpreters.com/scanning.html)
+    * [Parsing](https://craftinginterpreters.com/parsing-expressions.html)

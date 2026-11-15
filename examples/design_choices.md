@@ -68,7 +68,6 @@ The name for this DSL is Mission Sequencing Language (MSL). MSL should be simpli
 
 ## Delimeters
 
-* `()`
 * `[]`
 * `{}`
 
