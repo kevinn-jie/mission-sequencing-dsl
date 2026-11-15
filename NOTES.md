@@ -5,7 +5,7 @@
 ## Building the Program
 
 ```
-gcc -std=c11 -Wall -Wextra -pedantic .\src\main.c .\src\source.c .\src\scanner.c -o .\build\msl.exe
+gcc -std=c11 -Wall -Wextra -pedantic .\src\main.c .\src\source.c .\src\scanner.c .\src\parser.c -o .\build\msl.exe
 ```
 
 
@@ -50,5 +50,5 @@ gcc -std=c11 -Wall -Wextra -pedantic .\src\main.c .\src\source.c .\src\scanner.c
 ### TODO and TEMPORARY Comments
 
 * [src/main.c:4](src/main.c#L4): `TODO: Update this header.`
-* [src/main.c:42](src/main.c#L42): `TODO: Refine usage and general CLI tool design`
-* [src/main.c:105](src/main.c#L105): `TODO: Parse tokens and write JSON to output_path`
+* [src/main.c:39](src/main.c#L39): `TODO: Refine usage and general CLI tool design`
+* [src/main.c:106](src/main.c#L106): `TODO: Write JSON to output_path`

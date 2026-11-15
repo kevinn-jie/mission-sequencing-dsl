@@ -9,6 +9,7 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "parser.h"
 #include "scanner.h"
 #include "source.h"
 
@@ -98,10 +99,15 @@ int main(int argc, char* argv[]) {
         print_tokens(&tokens);
     }
 
-    /* TODO: Parse tokens and write JSON to output_path */
+    /* Skipped after scanner errors, since missing tokens would only cause cascading parse errors */
+    Sequence sequence = { 0 };
+    bool parsed = scanned && parse_sequence(&tokens, &sequence);
+
+    /* TODO: Write JSON to output_path */
     (void)output_path;
 
+    free_sequence(&sequence);
     free(tokens.tokens);
     free(source);
-    return scanned ? 0 : 65;
+    return parsed ? 0 : 65;
 }
