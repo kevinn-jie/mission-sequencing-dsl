@@ -5,7 +5,7 @@
 ## Building the Program
 
 ```
-gcc -std=c11 -Wall -Wextra -pedantic .\src\main.c .\src\source.c -o .\build\msl.exe
+gcc -std=c11 -Wall -Wextra -pedantic .\src\main.c .\src\source.c .\src\scanner.c -o .\build\msl.exe
 ```
 
 
@@ -16,6 +16,12 @@ gcc -std=c11 -Wall -Wextra -pedantic .\src\main.c .\src\source.c -o .\build\msl.
 
 ```powershell
 .\build\msl.exe .\examples\hello_sequence.msl
+```
+
+### Token Dump
+
+```powershell
+.\build\msl.exe .\examples\hello_sequence.msl --tokens
 ```
 
 ### Output Path
@@ -40,10 +46,9 @@ gcc -std=c11 -Wall -Wextra -pedantic .\src\main.c .\src\source.c -o .\build\msl.
 
 * A NUL byte in the file silently ends scanning; `is_eof()` treats `'\0'` as the end of input, but `read_source()` reads in binary mode and can include NUL bytes ([src/scanner.c:24](src/scanner.c#L24), [src/source.c:13](src/source.c#L13))
 * No function to free a `TokenList` callers must `free(list.tokens)` themselves ([src/scanner.h:15](src/scanner.h#L15))
-* The scanner is not connected yet; `main.c` does not call `scan_tokens()`, and the build command above does not compile `src/scanner.c`
 
 ### TODO and TEMPORARY Comments
 
 * [src/main.c:4](src/main.c#L4): `TODO: Update this header.`
-* [src/main.c:13](src/main.c#L13): `TODO: Refine usage and general CLI tool design`
-* [src/main.c:53](src/main.c#L53): `TEMPORARY: echoes source until scanner and JSON output exist`
+* [src/main.c:42](src/main.c#L42): `TODO: Refine usage and general CLI tool design`
+* [src/main.c:105](src/main.c#L105): `TODO: Parse tokens and write JSON to output_path`
