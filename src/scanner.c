@@ -364,6 +364,7 @@ static void scan_token(Scanner* scanner) {
             while (peek(scanner) != '\n' && !is_eof(scanner)) {
                 advance(scanner);
             }
+            
             break;
 
         case '"': scan_string(scanner);

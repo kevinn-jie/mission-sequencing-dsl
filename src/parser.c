@@ -72,3 +72,109 @@
  *       - They are not needed, they can be removes and unintegrated.
  */
 
+#include <stdbool.h>
+#include <stddef.h>
+#include <stdio.h>
+
+#include "scanner.h"
+
+typedef struct {
+    const TokenList* tokens;
+    size_t current;
+    bool had_error;
+    bool panic_mode; /* Suppresses later errors until synchronize() */
+} Parser;
+
+static const Token* peek(const Parser* parser) {
+    return &parser->tokens->tokens[parser->current];
+}
+
+static const Token* previous(const Parser* parser) {
+    return &parser->tokens->tokens[parser->current - 1];
+}
+
+static bool is_at_end(const Parser* parser) {
+    return peek(parser)->type == TOKEN_EOF;
+}
+
+static const Token* advance(Parser* parser) {
+    if (!is_at_end(parser)) {
+        parser->current++;
+    }
+
+    return previous(parser);
+}
+
+static bool check(const Parser* parser, TokenType type) {
+    if (is_at_end(parser)) {
+        return false;
+    }
+
+    return peek(parser)->type == type;
+}
+
+static bool match(Parser* parser, TokenType type) {
+    if (!check(parser, type)) {
+        return false;
+    }
+
+    advance(parser);
+    return true;
+}
+
+static void error_at(Parser* parser, const Token* token, const char* message) {
+    if (parser->panic_mode) {
+        return;
+    }
+
+    parser->panic_mode = true;
+    parser->had_error = true;
+
+    fprintf(stderr, "error: line %d", token->line);
+
+    if (token->type == TOKEN_EOF) {
+        fprintf(stderr, " at end");
+    }
+
+    else {
+        fprintf(stderr, " at '%.*s'", (int)token->length, token->start);
+    }
+
+    fprintf(stderr, ": %s\n", message);
+}
+
+static bool consume(Parser* parser, TokenType type, const char* message) {
+    if (check(parser, type)) {
+        advance(parser);
+        return true;
+    }
+
+    error_at(parser, peek(parser), message);
+    return false;
+}
+
+/**
+ * @brief Discards tokens until the next metadata header or step begins.
+ *
+ * @details Leaves panic mode so later errors are reported again. "@METADATA",
+ *          "@EPOCH", "@ABSOLUTE", and "@RELATIVE" are MSL's statement
+ *          boundaries, so the token at one of them is kept for the next rule.
+ */
+static void synchronize(Parser* parser) {
+    parser->panic_mode = false;
+
+    while (!is_at_end(parser)) {
+        switch (peek(parser)->type) {
+            case TOKEN_METADATA:
+            case TOKEN_EPOCH:
+            case TOKEN_ABSOLUTE:
+            case TOKEN_RELATIVE:
+                return;
+
+            default:
+                advance(parser);
+                break;
+        }
+    }
+}
+
