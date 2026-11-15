@@ -7,8 +7,7 @@
 #define MSL_SOURCE_H
 
 /**
- * @brief Reads the whole source code file into a null-terminated string.
- * 
+ * @brief   Reads the whole source code file into a null-terminated string.
  * @details The function returns NULL and prints an error to stderr on failure.
  *          The caller owns the returned string and must free() it after scanning.
  */

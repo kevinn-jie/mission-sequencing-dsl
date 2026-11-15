@@ -19,11 +19,11 @@ typedef struct {
 } TokenList;
 
 /**
- * @brief Scans a null-terminated source string into a list of tokens.
- *
- * @details Tokens are appended to `tokens`, which the caller owns. Every lexical
- *          error is printed to stderr with its line, and scanning continues so
- *          that all errors are reported. Returns false if any error occurred.
+ * @brief   Scans a null-terminated source string into a list of tokens.
+ * @details Tokens are appended to `tokens`, which the caller owns.
+ *          Every lexical error is printed to stderr with its line,
+ *          and scanning continues so that all errors are reported.
+ *          Returns false if any error occurred.
  */
 bool scan_tokens(const char* source, TokenList* tokens);
 

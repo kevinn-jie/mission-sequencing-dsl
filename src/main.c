@@ -1,7 +1,7 @@
 /**
  * @file  main.c
  * @brief Entry point for the MSL CLI tool.
- * TODO: Update this header.
+ * TODO:  Update this header.
  */
 
 #include <stdbool.h>

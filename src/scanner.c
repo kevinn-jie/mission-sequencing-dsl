@@ -72,8 +72,7 @@ static void error(Scanner* scanner, const char* format, ...) {
 }
 
 /**
- * @brief Appends a token spanning the current lexeme to the token list.
- *
+ * @brief   Appends a token spanning the current lexeme to the token list.
  * @details Returns false and prints an error to stderr if the list cannot grow.
  *          On failure the existing list is left intact.
  */
@@ -187,8 +186,7 @@ static bool lexeme_is_number(const Scanner* scanner) {
 }
 
 /**
- * @brief Consumes the escape code after a backslash in a string.
- *
+ * @brief   Consumes the escape code after a backslash in a string.
  * @details Accepts the JSON escapes \" \\ \/ \b \f \n \r \t and \uXXXX.
  *          Returns false and reports an error for anything else.
  */
@@ -302,11 +300,9 @@ static bool continues_number_or_time(const Scanner* scanner) {
 }
 
 /**
- * @brief Scans a number or timestamp, then checks its whole lexeme against the
- *        strict formats.
- *
- * @details Absolute timestamps are YYYY-DDDTHH:MM:SS.sss, relative timestamps
- *          are HH:MM:SS.sss, and numbers follow the JSON number format.
+ * @brief   Scans a number or timestamp, then checks its whole lexeme against the strict formats.
+ * @details Absolute timestamps are YYYY-DDDTHH:MM:SS.sss,
+ *          relative timestamps are HH:MM:SS.sss, and numbers follow the JSON number format.
  */
 static void scan_number_or_time(Scanner* scanner) {
     while (continues_number_or_time(scanner)) {
