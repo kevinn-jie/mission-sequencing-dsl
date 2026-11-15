@@ -1,5 +1,7 @@
 # Mission Sequencing Domain-Specific Language (DSL)
 
+A DSL for spaceflight mission sequencing.
+
 
 
 ## Table of Contents
