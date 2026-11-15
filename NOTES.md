@@ -2,32 +2,20 @@
 
 
 
-## Building the Program
+## Building the Program for Debugging
 
 ```
-gcc -std=c11 -Wall -Wextra -pedantic .\src\main.c .\src\source.c .\src\scanner.c .\src\parser.c -o .\build\msl.exe
+gcc -std=c11 -Wall -Wextra -pedantic -Og -g .\src\main.c .\src\source.c .\src\scanner.c .\src\parser.c -o .\build\msl.exe
 ```
 
 
 
 ## CLI Functionality
 
-### Basic Read
-
-```powershell
-.\build\msl.exe .\examples\hello_sequence.msl
-```
-
 ### Token Dump
 
 ```powershell
 .\build\msl.exe .\examples\hello_sequence.msl --tokens
-```
-
-### Output Path
-
-```powershell
-.\build\msl.exe .\examples\hello_sequence.msl -o .\examples\hello_sequence.msl.json
 ```
 
 
