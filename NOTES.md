@@ -5,17 +5,29 @@
 ## Building the Program for Debugging
 
 ```
-gcc -std=c11 -Wall -Wextra -pedantic -Og -g .\src\main.c .\src\source.c .\src\scanner.c .\src\parser.c -o .\build\msl.exe
+gcc -std=c11 -Wall -Wextra -pedantic -Og -g .\src\main.c .\src\source.c .\src\scanner.c .\src\parser.c .\src\emitter.c -o .\build\msl.exe
 ```
 
 
 
 ## CLI Functionality
 
+### Help
+
+```powershell
+.\build\msl.exe --help
+```
+
 ### Token Dump
 
 ```powershell
 .\build\msl.exe .\examples\hello_sequence.msl --tokens
+```
+
+### Compile to JSON
+
+```powershell
+.\build\msl.exe .\examples\hello_sequence.msl -o .\build\hello_sequence.msl.json
 ```
 
 
@@ -37,6 +49,4 @@ gcc -std=c11 -Wall -Wextra -pedantic -Og -g .\src\main.c .\src\source.c .\src\sc
 
 ### TODO and TEMPORARY Comments
 
-* [src/main.c:4](src/main.c#L4): `TODO: Update this header.`
-* [src/main.c:39](src/main.c#L39): `TODO: Refine usage and general CLI tool design`
-* [src/main.c:106](src/main.c#L106): `TODO: Write JSON to output_path`
+* None
