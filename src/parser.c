@@ -37,26 +37,6 @@
  *         entries    -> entry ( "," entry )* ;
  *         entry      -> IDENTIFIER ":" value ;
  *         e.g.          {key1: "argument", key2: 123}
- *
- * Checks made outside the grammar:
- *     The scanner emits absolute and relative timestamps as the same TIME token
- *     and checks their format only, so the parser checks that:
- *       - TIME is absolute (YYYY-DDDTHH:MM:SS.sss) after "@EPOCH" and
- *         "@ABSOLUTE".
- *       - TIME is relative (HH:MM:SS.sss) after "@RELATIVE".
- *       - Each TIME field is in range (day of year, hour, minute, second).
- *
- * Unconfirmed choices in the rules above:
- *     Ordering:
- *       - A metadata header after the first step is an error.
- *       - "@EPOCH" is optional, may repeat, and may appear at any step.
- *     Values:
- *       - A metadata value must be a string.
- *       - Arrays and objects may be empty: [] and {}
- *       - Arrays and objects may nest: [[1, 2], {key1: [3]}]
- *       - A trailing comma is an error: [1, 2,]
- *     Unused tokens:
- *       - "(" and ")" are scanned, but no rule uses them, so they are always an error.
  * 
  * Choice confirmation:
  *     Ordering:
