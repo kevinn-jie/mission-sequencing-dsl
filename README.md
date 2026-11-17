@@ -1,9 +1,9 @@
 # Mission Sequencing Domain-Specific Language (DSL)
 
-A domain-specific language for spaceflight mission sequencing.
-
 ![Version](https://img.shields.io/badge/version-1.0.0-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
+
+A domain-specific language for spaceflight mission sequencing.
 
 
 
