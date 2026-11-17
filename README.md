@@ -181,3 +181,4 @@ A longer example is in [examples/hello_sequence.msl](examples/hello_sequence.msl
     * [Scanning](https://craftinginterpreters.com/scanning.html)
     * [Parsing](https://craftinginterpreters.com/parsing-expressions.html)
 * [Managing releases in a repository](https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository)
+* [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/HTML)
