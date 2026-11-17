@@ -39,12 +39,14 @@ Mission sequencing in spaceflight autonomy must not pose risks. Actions should b
 
 ## Features
 
-* **Conversion to JSON**: `.msl` becomes `.msl.json`, with a `metadata` object and a `steps` array
-* **Timed steps**: Steps are made of time frames, a stem, and optional arguments
-* **Typed arguments**: Strings, numbers, booleans, arrays, and objects
-* **Error reporting**: Errors are printed with their line number, and nothing is written unless the file is valid
-* **Token dump**: `--tokens` prints the scanned tokens
-* **No dependencies**: Uses only the C standard library
+* `.msl` source code files
+* `.msl.json` output files
+* Timed steps
+* Metadata
+* Typed arguments (strings, numbers, booleans, arrays, and objects)
+* Error reporting
+* Token dump CLI
+* No dependencies
 
 See [ARCHITECTURE.md](ARCHITECTURE.md) for design choices and language architecture.
 
@@ -57,8 +59,9 @@ See [ARCHITECTURE.md](ARCHITECTURE.md) for design choices and language architect
 ## Prerequisites
 
 * [Git](https://git-scm.com/)
-* A C11 compiler that accepts GCC-style flags (e.g., GCC or Clang)
-    * The commands below use [GCC](https://gcc.gnu.org/)
+* C11 compiler
+    * Must accept GCC-style flags
+    * Commands below use [GCC](https://gcc.gnu.org/)
 
 
 
@@ -81,11 +84,13 @@ cd mission-sequencing-dsl
 
 ## Build
 
+Run the build command from the project root.
+
 ```bash
 gcc -std=c11 -O2 -flto -Wall -Wextra -Wpedantic -Wshadow -Wconversion -Wformat-security -Wnull-dereference -Werror -pedantic-errors -fstack-protector-strong -fdiagnostics-color=always ./src/main.c ./src/source.c ./src/scanner.c ./src/parser.c ./src/emitter.c -o ./build/msl.exe
 ```
 
-Tested with GCC 16.2.0. The build treats warnings as errors, so other compiler versions may report new warnings as errors.
+Tested with GCC 16.2.0. This build command treats warnings as errors. Other compiler versions may report new warnings as errors.
 
 
 
@@ -94,6 +99,8 @@ Tested with GCC 16.2.0. The build treats warnings as errors, so other compiler v
 
 
 ## Usage and Example
+
+Run commands from the project root.
 
 ```
 ./build/msl.exe <input.msl> <option>
@@ -115,7 +122,7 @@ Only one option is allowed per call.
 
 ### Example
 
-Given this `example.msl`:
+Given `example.msl`:
 
 ```
 @METADATA    "sequence_id"    "hello_sequence"
