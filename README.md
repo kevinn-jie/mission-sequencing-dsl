@@ -57,7 +57,7 @@ See [ARCHITECTURE.md](ARCHITECTURE.md) for design choices and language architect
 ## Prerequisites
 
 * [Git](https://git-scm.com/)
-* A C11 compiler
+* A C11 compiler that accepts GCC-style flags (e.g., GCC or Clang)
     * The commands below use [GCC](https://gcc.gnu.org/)
 
 
@@ -81,9 +81,11 @@ cd mission-sequencing-dsl
 
 ## Build
 
+```bash
+gcc -std=c11 -O2 -flto -Wall -Wextra -Wpedantic -Wshadow -Wconversion -Wformat-security -Wnull-dereference -Werror -pedantic-errors -fstack-protector-strong -fdiagnostics-color=always ./src/main.c ./src/source.c ./src/scanner.c ./src/parser.c ./src/emitter.c -o ./build/msl.exe
 ```
-gcc -std=c11 -Wall -Wextra -pedantic -O2 ./src/main.c ./src/source.c ./src/scanner.c ./src/parser.c ./src/emitter.c -o ./build/msl.exe
-```
+
+Tested with GCC 16.2.0. The build treats warnings as errors, so other compiler versions may report new warnings as errors.
 
 
 
