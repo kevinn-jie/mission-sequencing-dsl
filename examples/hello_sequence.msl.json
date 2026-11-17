@@ -1,0 +1,73 @@
+{
+  "metadata": {
+    "sequence_id": "hello_sequence",
+    "author": "kevin_jie",
+    "spacecraft": "MSL",
+    "ground_station": "VS_CODE"
+  },
+  "steps": [
+    {
+      "stem": "START",
+      "time": {
+        "type": "EPOCH",
+        "tag": "2026-318T02:15:00.000"
+      },
+      "args": []
+    },
+    {
+      "stem": "COMMAND1",
+      "time": {
+        "type": "COMMAND_RELATIVE",
+        "tag": "00:00:02.000"
+      },
+      "args": []
+    },
+    {
+      "stem": "COMMAND2",
+      "time": {
+        "type": "ABSOLUTE",
+        "tag": "2026-318T02:16:00.000"
+      },
+      "args": [
+        "argument",
+        123,
+        0.123,
+        true
+      ]
+    },
+    {
+      "stem": "COMMAND3",
+      "time": {
+        "type": "COMMAND_RELATIVE",
+        "tag": "00:00:20.000"
+      },
+      "args": [
+        [
+          "argument",
+          true
+        ],
+        [
+          123,
+          0.123
+        ]
+      ]
+    },
+    {
+      "stem": "COMMAND4",
+      "time": {
+        "type": "COMMAND_RELATIVE",
+        "tag": "00:02:00.000"
+      },
+      "args": [
+        {
+          "key1": "argument",
+          "key4": true
+        },
+        {
+          "key2": 123,
+          "key3": 0.123
+        }
+      ]
+    }
+  ]
+}
