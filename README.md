@@ -5,6 +5,10 @@
 
 A domain-specific language for spaceflight mission sequencing.
 
+| Example Script | Example Output |
+| --- | --- |
+| ![Example script](examples/example_script.png) | ![Example output](examples/example_output.png) |
+
 
 
 <br>
@@ -106,10 +110,10 @@ Run commands from the project root.
 ./build/msl.exe <input.msl> <option>
 ```
 
-| Option                 | Description                                          |
-| ---------------------- | ---------------------------------------------------- |
-| `--help`               | Show the help information                            |
-| `--tokens`             | Print the tokens scanned from `<input.msl>`          |
+| Option | Description |
+| --- | --- |
+| `--help` | Show the help information |
+| `--tokens` | Print the tokens scanned from `<input.msl>` |
 | `-o <output.msl.json>` | Compile `<input.msl>` to JSON at `<output.msl.json>` |
 
 Only one option is allowed per call.
