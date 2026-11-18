@@ -65,16 +65,25 @@
 #define MAX_NESTING_DEPTH 256
 
 /* Lexeme lengths of the two TIME formats the scanner accepts */
-#define ABSOLUTE_TIME_LENGTH 21 /* YYYY-DDDTHH:MM:SS.sss */
-#define RELATIVE_TIME_LENGTH 12 /* HH:MM:SS.sss          */
+/* YYYY-DDDTHH:MM:SS.sss                                      */
+#define ABSOLUTE_TIME_LENGTH 21
+
+/* HH:MM:SS.sss */
+#define RELATIVE_TIME_LENGTH 12
 
 typedef struct {
     const TokenList* tokens;
     size_t current;
     bool had_error;
-    bool panic_mode;    /* Suppresses later errors until synchronize() */
-    bool out_of_memory; /* Stops parsing entirely                      */
-    bool seen_step;     /* Whether a time frame keyword has been parsed */
+
+    /* Suppresses later errors until synchronize() */
+    bool panic_mode;
+
+    /* Stops parsing entirely */
+    bool out_of_memory;
+
+    /* Whether a time frame keyword has been parsed */
+    bool seen_step;
 } Parser;
 
 static const Token* peek(const Parser* parser) {

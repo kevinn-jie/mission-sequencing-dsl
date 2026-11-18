@@ -39,7 +39,9 @@ typedef enum {
 
 struct Value {
     ValueType type;
-    Token token; /* The literal itself, or the opening "[" or "{" */
+
+    /* The literal itself, or the opening "[" or "{" */
+    Token token;
     union {
         bool boolean;
         ValueList array;
@@ -54,7 +56,8 @@ struct Entry {
 };
 
 typedef struct {
-    Token time_frame; /* @EPOCH, @ABSOLUTE, or @RELATIVE */
+    /* @EPOCH, @ABSOLUTE, or @RELATIVE */
+    Token time_frame;
     Token time;
     Token stem;
     ValueList args;

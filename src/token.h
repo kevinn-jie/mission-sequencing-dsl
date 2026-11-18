@@ -16,18 +16,24 @@ typedef enum {
     /* Separators */
     TOKEN_COMMA, TOKEN_COLON,
 
-    /* Keywords */
-    TOKEN_METADATA, /* @METADATA */
-    TOKEN_EPOCH,    /* @EPOCH    */
-    TOKEN_ABSOLUTE, /* @ABSOLUTE */
-    TOKEN_RELATIVE, /* @RELATIVE */
+    /* Keywords  */
+    /* @METADATA */
+    TOKEN_METADATA,
+    /* @EPOCH */
+    TOKEN_EPOCH,
+    /* @ABSOLUTE */
+    TOKEN_ABSOLUTE,
+    /* @RELATIVE */
+    TOKEN_RELATIVE,
     TOKEN_TRUE, TOKEN_FALSE,
 
     /* Literals */
     TOKEN_IDENTIFIER,
     TOKEN_STRING,
-    TOKEN_NUMBER, /* Integers and floats                         */
-    TOKEN_TIME,   /* Relative timestamps and absolute timestamps */
+    /* Integers and floats */
+    TOKEN_NUMBER,
+    /* Relative timestamps and absolute timestamps */
+    TOKEN_TIME,
 
     TOKEN_EOF,
     TOKEN_TYPE_COUNT,
@@ -35,7 +41,9 @@ typedef enum {
 
 typedef struct {
     TokenType type;
-    const char* start; /* Lexeme literals tracked by location to save memory */
+
+    /* Lexeme literals tracked by location to save memory */
+    const char* start;
     size_t length;
     int line;
 } Token;
